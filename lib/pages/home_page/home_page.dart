@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_app/consts/color.dart';
+import 'package:sushi_app/pages/details_page/details_page.dart';
 import 'package:sushi_app/provider/food_provider.dart';
 import 'package:sushi_app/widgets/food_tile/food_tile.dart';
 import 'package:sushi_app/widgets/intro_page_button/intro_page_button.dart';
@@ -14,6 +15,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void goToDetails(int ind) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailsPage(index: ind),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,6 +129,7 @@ class _HomePageState extends State<HomePage> {
                             price: data.food[ind].price,
                             imagePath: data.food[ind].imagePath,
                             rating: data.food[ind].rating,
+                            onTapped: () => goToDetails(ind),
                           ),
                         );
                       },
@@ -127,50 +138,54 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Container(
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: white,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.all(15),
-                            child: Image.asset(
+              GestureDetector(
+                onTap: () => goToDetails(2),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Container(
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.all(15),
+                              child: Image.asset(
                                 "assets/images/free-icon-sushi-roll-5229619.png",
-                                height: 110),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "Sushi Pososotos",
-                                style: GoogleFonts.dmSerifDisplay(
-                                  fontSize: 18,
-                                ),
+                                height: 110,
                               ),
-                              const Text(
-                                "\$30.0",
-                                style: TextStyle(fontSize: 18),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 20.0),
-                        child: Icon(
-                          Icons.favorite,
-                          size: 30,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Sushi Pososotos",
+                                  style: GoogleFonts.dmSerifDisplay(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                const Text(
+                                  "\$30.0",
+                                  style: TextStyle(fontSize: 18),
+                                )
+                              ],
+                            )
+                          ],
                         ),
-                      )
-                    ],
+                        const Padding(
+                          padding: EdgeInsets.only(right: 20.0),
+                          child: Icon(
+                            Icons.favorite,
+                            size: 30,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
