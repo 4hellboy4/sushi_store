@@ -18,14 +18,20 @@ class FoodTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 100,
       width: 200,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30), color: Colors.white),
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.white,
+      ),
       child: Center(
         child: Column(
           children: <Widget>[
-            Image.asset(imagePath),
+            Image.asset(
+              imagePath,
+              height: 100,
+            ),
             const SizedBox(
               height: 5,
             ),
