@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sushi_app/pages/home_page/home_page.dart';
 import 'package:sushi_app/pages/intro_page/intro_page.dart';
 
 class MyRouter {
@@ -9,16 +10,16 @@ class MyRouter {
 
   static Widget _introPageBuilder(BuildContext context, GoRouterState state) =>
       const IntroPage();
-  // static Widget _homeBuilder(BuildContext context, GoRouterState state) =>
-  //   const IntroPage();
+  static Widget _homeBuilder(BuildContext context, GoRouterState state) =>
+      const HomePage();
 
   static final _router = GoRouter(
     initialLocation: introPage,
     routes: <GoRoute>[
-      // GoRoute(
-      //   path: home,
-      //   builder: _homeBuilder,
-      // ),
+      GoRoute(
+        path: home,
+        builder: _homeBuilder,
+      ),
       GoRoute(
         path: introPage,
         builder: _introPageBuilder,

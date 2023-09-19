@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sushi_app/consts/color.dart';
 
 class IntroPageButton extends StatelessWidget {
-  IntroPageButton({
+  const IntroPageButton({
     Key? key,
     required this.name,
     required this.onPressed,
   }) : super(key: key);
 
   final String name;
-  void Function()? onPressed;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
