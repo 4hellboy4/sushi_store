@@ -60,7 +60,7 @@ class FoodTile extends StatelessWidget {
                         style: const TextStyle(color: Colors.grey),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ],
