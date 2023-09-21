@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_app/consts/color.dart';
+import 'package:sushi_app/pages/cart_page/cart_page.dart';
 import 'package:sushi_app/pages/details_page/details_page.dart';
 import 'package:sushi_app/provider/food_provider.dart';
 import 'package:sushi_app/widgets/food_tile/food_tile.dart';
@@ -24,6 +25,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void goToCartPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CartPage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +52,15 @@ class _HomePageState extends State<HomePage> {
             color: Colors.grey[900],
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: goToCartPage,
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.grey[900],
+            ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(

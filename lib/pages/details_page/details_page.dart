@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_app/consts/color.dart';
+import 'package:sushi_app/models/cart.dart';
+import 'package:sushi_app/provider/cart_provider.dart';
 import 'package:sushi_app/provider/food_provider.dart';
 import 'package:sushi_app/widgets/intro_page_button/intro_page_button.dart';
 
@@ -29,12 +31,31 @@ class _DetailsPageState extends State<DetailsPage> {
     });
   }
 
+  void addNewElement(Cart cart) {
+    Provider.of<CartProvider>(context, listen: false).addToCart(cart);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: const Text("Successfuly added to the cart"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.done),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var food =
         Provider.of<FoodProvider>(context, listen: false).food[widget.index];
     return Scaffold(
-      //food[widget.index].imagePath
+      appBar: AppBar(),
       backgroundColor: white,
       body: Column(
         children: [
@@ -148,7 +169,15 @@ class _DetailsPageState extends State<DetailsPage> {
                   ],
                 ),
                 const SizedBox(height: 15),
-                IntroPageButton(name: "Add", onPressed: () {}),
+                IntroPageButton(
+                  name: "Add",
+                  onPressed: () => addNewElement(
+                    Cart(
+                      food: food,
+                      amount: amount,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

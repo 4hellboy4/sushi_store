@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_app/consts/color.dart';
+import 'package:sushi_app/provider/cart_provider.dart';
 import 'package:sushi_app/provider/food_provider.dart';
 import 'package:sushi_app/router/router.dart';
 
@@ -15,8 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<FoodProvider>(
           create: (_) => FoodProvider(),
+        ),
+        ChangeNotifierProvider<CartProvider>(
+          create: (_) => CartProvider(),
         ),
       ],
       child: MaterialApp.router(
